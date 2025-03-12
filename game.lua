@@ -65,9 +65,9 @@ function Game:init()
 	if self.Gridsize == 11 then self.SqSize = 20 end
 	
 	-- set coordinates of A1
-	if self.Gridsize == 7 then self.A1_coord = {14,194} end
-	if self.Gridsize == 9 then self.A1_coord = {11,203} end
-	if self.Gridsize == 11 then self.A1_coord = {9,209} end
+	if self.Gridsize == 7 then self.A1_coord = {13,194} end
+	if self.Gridsize == 9 then self.A1_coord = {10,203} end
+	if self.Gridsize == 11 then self.A1_coord = {8,209} end
 
 	-- set which players are human (not AI)
 	self.HumanPlayers = {true, false, false, false}
@@ -116,9 +116,9 @@ function Game:reinit()
 	if self.Gridsize == 11 then self.SqSize = 20 end
 	
 	-- set coordinates of A1
-	if self.Gridsize == 7 then self.A1_coord = {14,194} end
-	if self.Gridsize == 9 then self.A1_coord = {11,203} end
-	if self.Gridsize == 11 then self.A1_coord = {9,209} end
+	if self.Gridsize == 7 then self.A1_coord = {13,194} end
+	if self.Gridsize == 9 then self.A1_coord = {10,203} end
+	if self.Gridsize == 11 then self.A1_coord = {8,209} end
 	
 	-- set timers (in seconds)
 	for p = 1,4 do self.Timers[p] = (2*self.TimeControl-1)*60 end
@@ -519,38 +519,38 @@ end
 function Game:renderNewgameMenu()
 	love.graphics.draw(Textures.NewgameBackground, 0, 0)
 	-- categories
-	love.graphics.print("GridSize", 257, 86)
-	love.graphics.print("No. Players", 248, 86+35)
-	love.graphics.print("Human Players", 242, 86+2*35)
-	love.graphics.print("Timer", 266, 86+3*35)
+	love.graphics.print("GridSize", 256, 86)
+	love.graphics.print("No. Players", 247, 86+35)
+	love.graphics.print("Human Players", 241, 86+2*35)
+	love.graphics.print("Timer", 265, 86+3*35)
 	-- button labels
-	love.graphics.print("7", 252, 103)
-	love.graphics.print("9", 252+25, 103)
-	love.graphics.print("1", 252+2*26-4, 103)
-	love.graphics.print("1", 252+2*26+1, 103)
-	love.graphics.print("2", 263, 103+35)
-	love.graphics.print("4", 263+27, 103+35)
-	for p = 1,4 do love.graphics.draw(Textures.SmallPlayer[p], 238+(p-1)*20, 104+2*30) end
-	if self.NumPlayers == 2 then for p = 2,4,2 do love.graphics.draw(Textures.SmallPlayerDead, 238+(p-1)*20, 104+2*30) end end
-	love.graphics.print("OFF", 241, 103+3*35)
-	love.graphics.print("1/1", 241+20, 103+3*35)
-	love.graphics.print("3/2", 241+2*20, 103+3*35)
-	love.graphics.print("5/3", 241+3*20, 103+3*35)
+	love.graphics.print("7", 251, 103)
+	love.graphics.print("9", 251+25, 103)
+	love.graphics.print("1", 251+2*26-4, 103)
+	love.graphics.print("1", 251+2*26+1, 103)
+	love.graphics.print("2", 262, 103+35)
+	love.graphics.print("4", 262+27, 103+35)
+	for p = 1,4 do love.graphics.draw(Textures.SmallPlayer[p], 237+(p-1)*20, 104+2*30) end
+	if self.NumPlayers == 2 then for p = 2,4,2 do love.graphics.draw(Textures.SmallPlayerDead, 237+(p-1)*20, 104+2*30) end end
+	love.graphics.print("OFF", 240, 103+3*35)
+	love.graphics.print("1/1", 240+20, 103+3*35)
+	love.graphics.print("3/2", 240+2*20, 103+3*35)
+	love.graphics.print("5/3", 240+3*20, 103+3*35)
 	-- selected parameters
-	love.graphics.draw(Textures.NewgameMarker, 243+(self.Gridsize-7)/2*25, 94)
-	love.graphics.draw(Textures.NewgameMarker, 254+(self.NumPlayers-2)/2*27, 94+35)
+	love.graphics.draw(Textures.NewgameMarker, 242+(self.Gridsize-7)/2*25, 94)
+	love.graphics.draw(Textures.NewgameMarker, 253+(self.NumPlayers-2)/2*27, 94+35)
 	for p = 1,4 do
-		if self.HumanPlayers[p] then love.graphics.draw(Textures.NewgameMarker, 238+(p-1)*20, 104+2*30) end
+		if self.HumanPlayers[p] then love.graphics.draw(Textures.NewgameMarker, 237+(p-1)*20, 104+2*30) end
 	end
-	love.graphics.draw(Textures.NewgameMarker, 258+(self.TimeControl-1)*20, 103+3*32)
+	love.graphics.draw(Textures.NewgameMarker, 257+(self.TimeControl-1)*20, 103+3*32)
 	-- highlighter
 	local offset = 0; local offset_mul = 0;
 	if self.NewgameHigh[1] == 3 then offset = 16; offset_mul = 7 end
 	if self.NewgameHigh[1] == 4 then offset = 5; offset_mul = 5 end
 	if self.NewgameHigh[1] ~= 5 then
-		love.graphics.draw(Textures.NewgameHighlighter, 238+(self.NewgameHigh[2]-1)*(20+offset_mul)+offset, 234-self.NewgameHigh[1]*35)
+		love.graphics.draw(Textures.NewgameHighlighter, 237+(self.NewgameHigh[2]-1)*(20+offset_mul)+offset, 234-self.NewgameHigh[1]*35)
 	else
-		love.graphics.draw(Textures.NewgameStartGame, 244, 5)
+		love.graphics.draw(Textures.NewgameStartGame, 243, 5)
 	end
 end
 
@@ -590,8 +590,8 @@ function Game:renderGame()
 	end
 	
 	-- draw hud
-	if self.GameOver then Game:renderWinner(250, 40) end
-	Game:renderPlayerTurn(253, 75)
+	if self.GameOver then Game:renderWinner(249, 40) end
+	Game:renderPlayerTurn(250,75)
 	
 	-- if newgame over-draw newgame menu
 	if self.Newgame then
