@@ -139,10 +139,19 @@ local startB = false	-- start button
 function Game:update(dt)
 	
 	-- get the inputs
-	local CUR_DPAD = {love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_UP),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_DOWN),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_LEFT),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_RIGHT)}
-    local CUR_A = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_A) or love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_B)
-    local CUR_B = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_X) or love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_Y)
-    local CUR_startB = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_START)
+	local CUR_DPAD = {false, false, false, false}
+	for player = 1, 4 do
+		CUR_DPAD[1] = CUR_DPAD[1] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_UP)
+		CUR_DPAD[2] = CUR_DPAD[2] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_DOWN)
+		CUR_DPAD[3] = CUR_DPAD[3] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_LEFT)
+		CUR_DPAD[4] = CUR_DPAD[4] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_RIGHT)
+	end
+	local CUR_A, CUR_B, CUR_startB = false, false, false
+	for player = 1, 4 do
+		CUR_A      = CUR_A      or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_A) or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_B)
+		CUR_B      = CUR_B      or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_X) or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_Y)
+		CUR_startB = CUR_startB or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_START)
+	end
 	
 	-- handle potential phasing out of music
 	Game:phase_out_music(dt)
@@ -258,10 +267,19 @@ end
 function Game:newgame_update()
 
 	-- get the inputs
-	local CUR_DPAD = {love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_UP),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_DOWN),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_LEFT),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_RIGHT)}
-    local CUR_A = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_A) or love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_B)
-    local CUR_B = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_X) or love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_Y)
-    local CUR_startB = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_START)
+	local CUR_DPAD = {false, false, false, false}
+	for player = 1, 4 do
+		CUR_DPAD[1] = CUR_DPAD[1] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_UP)
+		CUR_DPAD[2] = CUR_DPAD[2] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_DOWN)
+		CUR_DPAD[3] = CUR_DPAD[3] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_LEFT)
+		CUR_DPAD[4] = CUR_DPAD[4] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_RIGHT)
+	end
+	local CUR_A, CUR_B, CUR_startB = false, false, false
+	for player = 1, 4 do
+		CUR_A      = CUR_A      or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_A) or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_B)
+		CUR_B      = CUR_B      or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_X) or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_Y)
+		CUR_startB = CUR_startB or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_START)
+	end
     
     -- start press starts the game
 	if CUR_startB and not startB then	-- press-down
@@ -359,11 +377,20 @@ end
 function Game:pause_update()
 	
 	-- get the inputs
-	local CUR_DPAD = {love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_UP),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_DOWN),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_LEFT),love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_RIGHT)}
-    local CUR_A = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_A) or love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_B)
-    local CUR_B = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_X) or love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_Y)
-    local CUR_startB = love.joystick.isDown(1, RETRO_DEVICE_ID_JOYPAD_START)
-    
+	local CUR_DPAD = {false, false, false, false}
+	for player = 1, 4 do
+		CUR_DPAD[1] = CUR_DPAD[1] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_UP)
+		CUR_DPAD[2] = CUR_DPAD[2] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_DOWN)
+		CUR_DPAD[3] = CUR_DPAD[3] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_LEFT)
+		CUR_DPAD[4] = CUR_DPAD[4] or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_RIGHT)
+	end
+	local CUR_A, CUR_B, CUR_startB = false, false, false
+	for player = 1, 4 do
+		CUR_A      = CUR_A      or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_A) or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_B)
+		CUR_B      = CUR_B      or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_X) or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_Y)
+		CUR_startB = CUR_startB or love.joystick.isDown(player, RETRO_DEVICE_ID_JOYPAD_START)
+	end
+
 	-- start press unpauses
 	if CUR_startB and not startB then	-- press-down
 		startB = true
